@@ -1,0 +1,6 @@
+This Vagrantfile creates a load balancer using nginx and
+Three webservers with nginx.
+It´s expandable to any number of webserver nodes. 
+Just change the NODE_COUNT Parameter in The Vagrantfile
+
+Ex. NODE_COUNT = 4

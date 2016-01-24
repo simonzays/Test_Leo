@@ -1,0 +1,13 @@
+upstream demo {
+{% for ip in node_ips.split(',') %}
+  server {{ ip }}:80  max_fails=2 fail_timeout=1s;
+{% endfor %}
+}
+
+server {
+  listen 80;
+  server_name lb.gears-of-leo-test.lan;
+  location / {
+    proxy_pass http://demo;
+  }
+}

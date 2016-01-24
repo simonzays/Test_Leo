@@ -1,0 +1,9 @@
+---
+- hosts: all
+  gather_facts: yes
+  user: vagrant
+  sudo: yes
+  serial: 1000
+
+  roles:
+    - nginx

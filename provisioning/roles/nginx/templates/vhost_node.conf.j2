@@ -1,0 +1,9 @@
+server {
+  listen   80;
+  server_name {{ ansible_hostname }}.gears-of-leo-test.lan;
+
+  location / {
+    return 200 '{{ ansible_hostname }}';
+    add_header Content-Type text/plain;
+  }
+}

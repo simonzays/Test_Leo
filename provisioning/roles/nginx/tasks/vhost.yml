@@ -1,0 +1,22 @@
+---
+- name: Remove default nginx vhost config file
+  file:
+    path: "/etc/nginx/sites-enabled/default"
+    state: absent
+  notify: reload nginx
+
+- name: vhost config file for node
+  template:
+    src: vhost_node.conf.j2
+    dest: "/etc/nginx/sites-enabled/vhosts.conf"
+    mode: 0644
+  when: nginx.role == 'node'
+  notify: reload nginx
+
+- name: vhost config file for lb
+  template:
+    src: vhost_lb.conf.j2
+    dest: "/etc/nginx/sites-enabled/vhosts.conf"
+    mode: 0644
+  when: nginx.role == 'lb'
+  notify: reload nginx
